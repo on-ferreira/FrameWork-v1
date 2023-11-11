@@ -13,4 +13,10 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "harvester.settings")
 
+from .utils import harvester_init
+from .utils import clear_table
+
+clear_table('harvester_projeto')
+harvester_init()
+
 application = get_wsgi_application()

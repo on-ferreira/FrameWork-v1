@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("harvester_init/", views.harvester_init, name="harvester_init"),
+    path("comunication_harverster_synthesis/", views.comunication_harverster_synthesis,
+         name="comunication_harverster_synthesis"),
 ]
