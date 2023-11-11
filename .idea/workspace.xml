@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="Creating use case &quot;Coletar Projetos no Síntese&quot;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,12 +96,25 @@
       <updated>1699649824198</updated>
       <workItem from="1699649825204" duration="522000" />
       <workItem from="1699650362248" duration="1477000" />
-      <workItem from="1699726179871" duration="7827000" />
+      <workItem from="1699726179871" duration="10525000" />
     </task>
+    <task id="LOCAL-00001" summary="Creating use case &quot;Coletar Projetos no Síntese&quot;">
+      <option name="closed" value="true" />
+      <created>1699734216929</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1699734216929</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Creating use case &quot;Coletar Projetos no Síntese&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating use case &quot;Coletar Projetos no Síntese&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

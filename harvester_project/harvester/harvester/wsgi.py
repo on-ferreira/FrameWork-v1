@@ -15,8 +15,12 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "harvester.settings")
 
 from .utils import harvester_init
 from .utils import clear_table
+from .utils import comunication_harvester_synthesis
 
 clear_table('harvester_projeto')
 harvester_init()
 
 application = get_wsgi_application()
+
+comunication_harvester_synthesis()
+

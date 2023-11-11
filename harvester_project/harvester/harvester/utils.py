@@ -15,6 +15,7 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:5005/harves
             # Salvar dados localmente
             for projeto_data in json_data.values():
                 projeto = Projeto(
+                    id=projeto_data['id'],
                     name=projeto_data['name'],
                     poco=projeto_data['poco'],
                     um=projeto_data['um'],
@@ -36,14 +37,28 @@ def clear_table(table_name):
         cursor.execute(f"DELETE FROM {table_name};")
 
 
-def comunication_harverster_synthesis(sleep_interval=15,
-                                      synthesis_url="http://localhost:5005/comunication_harverster_synthesis"):
+def comunication_harvester_synthesis(sleep_interval=15,
+                                      synthesis_url="http://localhost:5005/comunication_harverster_synthesis/"):
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
         response = requests.get(synthesis_url)
+        json_data = response.json()
+
+        #TODO: Fazer a lógica de como receber os últimos dados, para buscar por eles.
+
         # Consulta (Coletor) busca por dados novos na base externa e os recebe caso existam.
+        harvested_data = {}
+        for projeto_data in json_data.values():
+            data_response = requests.get(projeto_data['link_dados_rto'])
+            harvested_data[projeto_data['id']] = data_response.json()
+
+        headers = {'Content-Type': 'application/json'}  # Adicione quaisquer outros headers necessários
 
         # Consulta (Coletor) envia dados coletados, se houver, para o Síntese. POST
+        if harvested_data:
+            post_response = requests.post(synthesis_url, json=harvested_data, headers=headers)
+            print(f"Status Code: {post_response.status_code}")
+            #print("Response Content:", post_response.text)
 
         # A comunicação é repetida rotineiramente de acordo com o tempo estipulado.
         time.sleep(sleep_interval)
