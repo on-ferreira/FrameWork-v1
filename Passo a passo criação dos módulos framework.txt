@@ -1,0 +1,18 @@
+
+mkdir harvester_project
+cd harvester_project
+virtualenv harv_venv
+.\harv_venv\Scripts\activate
+pip install django
+django-admin startproject harvester
+deactivate
+cd ..
+
+mkdir synthesis_project
+cd synthesis_project
+virtualenv syn_venv
+.\syn_venv\Scripts\activate
+pip install django
+django-admin startproject synthesis
+deactivate
+cd ..
