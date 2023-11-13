@@ -18,9 +18,9 @@ from .utils import clear_table
 from .utils import comunication_harvester_synthesis
 
 clear_table('harvester_projeto')
-harvester_init()
+project_list = harvester_init()
 
 application = get_wsgi_application()
 
-comunication_harvester_synthesis()
+comunication_harvester_synthesis(project_list=project_list)
 

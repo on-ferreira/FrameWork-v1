@@ -12,19 +12,8 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:5005/harves
             response.raise_for_status()  # Levanta uma exceção para códigos de erro HTTP
             json_data = response.json()
 
-            # Salvar dados localmente
-            for projeto_data in json_data.values():
-                projeto = Projeto(
-                    id=projeto_data['id'],
-                    name=projeto_data['name'],
-                    poco=projeto_data['poco'],
-                    um=projeto_data['um'],
-                    link_dados_rto=projeto_data['link_dados_rto']
-                )
-                projeto.save()
-
             print("Resposta do Synthesis:", json_data)
-            break  # Sai do loop se a solicitação for bem-sucedida
+            return json_data  # Sai do loop se a solicitação for bem-sucedida
         except requests.exceptions.RequestException as e:
             print(f"Erro ao tentar estabelecer conexão com o Síntese: {e}")
             retries += 1
@@ -37,14 +26,15 @@ def clear_table(table_name):
         cursor.execute(f"DELETE FROM {table_name};")
 
 
-def comunication_harvester_synthesis(sleep_interval=15,
-                                      synthesis_url="http://localhost:5005/comunication_harverster_synthesis/"):
+def comunication_harvester_synthesis(project_list, sleep_interval=15,
+                                     synthesis_url="http://localhost:5005/comunication_harverster_synthesis/"):
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
+        # TODO: Adicionar um for project in project_list:
         response = requests.get(synthesis_url)
         json_data = response.json()
 
-        #TODO: Fazer a lógica de como receber os últimos dados, para buscar por eles.
+        # TODO: Fazer a lógica de como receber os últimos dados, para buscar por eles.
 
         # Consulta (Coletor) busca por dados novos na base externa e os recebe caso existam.
         harvested_data = {}
@@ -58,7 +48,7 @@ def comunication_harvester_synthesis(sleep_interval=15,
         if harvested_data:
             post_response = requests.post(synthesis_url, json=harvested_data, headers=headers)
             print(f"Status Code: {post_response.status_code}")
-            #print("Response Content:", post_response.text)
+            # print("Response Content:", post_response.text)
 
         # A comunicação é repetida rotineiramente de acordo com o tempo estipulado.
         time.sleep(sleep_interval)

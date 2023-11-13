@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="Creating use case &quot;Coletar Projetos no Síntese&quot;">
+    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="Creating use case &quot;Comunicação Consulta Síntese&quot;">
+      <change beforePath="$PROJECT_DIR$/.idea/FrameWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FrameWork.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +34,26 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="a3e0349a-bb31-4e54-b2a8-156583050b18" />
+        <option name="url" value="https://github.com/on-ferreira/FrameWork-v1.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="ProjectId" id="2Y05nc2gUv5MI6ZjdYAUsrmzcr9" />
   <component name="ProjectViewState">
@@ -47,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/orlan/OneDrive/Documentos/UFF/FrameWork",
+    "last_opened_file_path": "C:/Users/orlan/OneDrive/Documentos/UFF/bopsistemas",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,6 +115,8 @@
       <workItem from="1699649825204" duration="522000" />
       <workItem from="1699650362248" duration="1477000" />
       <workItem from="1699726179871" duration="10525000" />
+      <workItem from="1699736954622" duration="106000" />
+      <workItem from="1699903386799" duration="739000" />
     </task>
     <task id="LOCAL-00001" summary="Creating use case &quot;Coletar Projetos no Síntese&quot;">
       <option name="closed" value="true" />
@@ -106,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699734216929</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creating use case &quot;Comunicação Consulta Síntese&quot;">
+      <option name="closed" value="true" />
+      <created>1699736972888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1699736972888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,7 +142,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating use case &quot;Coletar Projetos no Síntese&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating use case &quot;Coletar Projetos no Síntese&quot;" />
+    <MESSAGE value="Creating use case &quot;Comunicação Consulta Síntese&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating use case &quot;Comunicação Consulta Síntese&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
