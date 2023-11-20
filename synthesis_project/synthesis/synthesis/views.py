@@ -12,11 +12,6 @@ import time
 
 @require_http_methods(["GET"])
 def harvester_init(request):
-    # projects_mock = {
-    #     "projeto1": {"id": 1, "name": "nome1", "poco": "poco1", "um": "um1", "link": "link_dados1"},
-    #     "projeto2": {"id": 2, "name": "nome2", "poco": "poco2", "um": "um2", "link": "link_dados2"},
-    # }
-
     if (not Project.objects.filter(id=1).exists()):
         p1 = Project(name="Project 1", poco="Poco 1", um="UM 1", link="https://api.chucknorris.io/jokes/random")
         p2 = Project(name="Project 2", poco="Poco 2", um="UM 2", link="https://api.chucknorris.io/jokes/random")
@@ -58,29 +53,21 @@ def comunication_harverster_synthesis(request):
                 "lastime": latest_time
             }
 
-
-        # id_Proj = 1
-        # link_Proj = "https://api.chucknorris.io/jokes/random"
-        # return JsonResponse({"proj1": {"id": id_Proj, "link": link_Proj, "Msg": "ultimos dados recebidos"}})
         return JsonResponse(update_list, status=200)
     elif request.method == "POST":
         # Obtém os dados do corpo da solicitação
         data = json.loads(request.body.decode("utf-8"))
 
-        # Agora, você pode acessar os campos do corpo da solicitação
-        # joke = data['1']["value"]
-
         # Salva os dados no banco de dados
         for (key, inner_data) in data.items():
             temp = ProjectData(project_id=key, data=inner_data['value'], timestamp=time.time())
             temp.save()
-            # print(f"key: {key}, value: {inner_data['value']}")
+            # print(f"Project ID: {key}, value: {inner_data['value']}")
 
-        # print(f"dados recebidos: {joke}")
         purge_old_data()
         return JsonResponse({}, status=200)
 
-
+# 1200 seconds = 20 minutes
 def purge_old_data_for_project(project, keep_data_interval=1200):
     try:
         latest_row = ProjectData.objects.filter(project_id=project.id).aggregate(Max('timestamp'))
