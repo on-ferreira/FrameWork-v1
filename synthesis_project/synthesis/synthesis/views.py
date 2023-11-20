@@ -2,16 +2,29 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 import json
+from .models import Project
 
 
 @require_http_methods(["GET"])
 def harvester_init(request):
-    projects_mock = {
-        "projeto1": {"id": 1, "name": "nome1", "poco": "poco1", "um": "um1", "link_dados_rto": "link_dados1"},
-        "projeto2": {"id": 2, "name": "nome2", "poco": "poco2", "um": "um2", "link_dados_rto": "link_dados2"},
-    }
-    projects = projects_mock
-    return JsonResponse(projects, status=200)
+    # projects_mock = {
+    #     "projeto1": {"id": 1, "name": "nome1", "poco": "poco1", "um": "um1", "link_dados_rto": "link_dados1"},
+    #     "projeto2": {"id": 2, "name": "nome2", "poco": "poco2", "um": "um2", "link_dados_rto": "link_dados2"},
+    # }
+
+    # p1 = Project(name="Project 1", poco="Poco 1", um="UM 1", link_dados_rto="Link 1")
+    # p2 = Project(name="Project 2", poco="Poco 2", um="UM 2", link_dados_rto="Link 2")
+    p3 = Project(name="Project 3", poco="Poco 3", um="UM 3", link_dados_rto="Link 3")
+
+    # p1.save()
+    # p2.save()
+    p3.save()
+
+    projects = Project.objects.all()
+    project_dict = {project.id: project.name for project in projects}
+    print(project_dict)
+
+    return JsonResponse(project_dict, status=200)
 
 
 # Verificar alternativa para esse decorator, pois diminui a segurança

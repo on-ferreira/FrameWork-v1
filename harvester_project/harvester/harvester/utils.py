@@ -1,10 +1,9 @@
 import requests
 import time
-from .models import Projeto
 from django.db import connection
 
 
-def harvester_init(retry_interval=5, synthesis_url="http://localhost:5005/harvester_init"):
+def harvester_init(retry_interval=5, synthesis_url="http://localhost:8000/harvester_init"):
     retries = 0
     while True:
         try:
@@ -20,14 +19,8 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:5005/harves
             print(f"Tentando novamente em {retry_interval * retries} segundos...")
             time.sleep(retry_interval * retries)
 
-
-def clear_table(table_name):
-    with connection.cursor() as cursor:
-        cursor.execute(f"DELETE FROM {table_name};")
-
-
 def comunication_harvester_synthesis(project_list, sleep_interval=15,
-                                     synthesis_url="http://localhost:5005/comunication_harverster_synthesis/"):
+                                     synthesis_url="http://localhost:8000/comunication_harverster_synthesis/"):
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
         # TODO: Adicionar um for project in project_list:
