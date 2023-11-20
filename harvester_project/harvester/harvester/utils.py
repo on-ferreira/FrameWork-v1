@@ -3,7 +3,7 @@ import time
 from django.db import connection
 
 
-def harvester_init(retry_interval=5, synthesis_url="http://localhost:8000/harvester_init"):
+def harvester_init(retry_interval=5, synthesis_url="http://localhost:5500/harvester_init"):
     retries = 0
     while True:
         try:
@@ -23,7 +23,7 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:8000/harves
             time.sleep(retry_interval)
 
 def comunication_harvester_synthesis(project_list, sleep_interval=15,
-                                     synthesis_url="http://localhost:8000/comunication_harverster_synthesis/"):
+                                     synthesis_url="http://localhost:5500/comunication_harverster_synthesis/"):
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
         # TODO: Adicionar um for project in project_list:
