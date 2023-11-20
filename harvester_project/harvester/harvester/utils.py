@@ -11,19 +11,25 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:8000/harves
             response.raise_for_status()  # Levanta uma exceção para códigos de erro HTTP
             json_data = response.json()
 
-            print("Resposta do Synthesis:", json_data)
+            print("Projects retrived:", json_data)
             return json_data  # Sai do loop se a solicitação for bem-sucedida
         except requests.exceptions.RequestException as e:
-            print(f"Erro ao tentar estabelecer conexão com o Síntese: {e}")
+            print(f"Error to stablish connection with synthesys: {e}")
             retries += 1
-            print(f"Tentando novamente em {retry_interval * retries} segundos...")
-            time.sleep(retry_interval * retries)
+            # Developments is faster without retrying multiplyer
+            # print(f"Tentando novamente em {retry_interval * retries} segundos...")
+            # time.sleep(retry_interval * retries)
+            print(f"Trying again in {retry_interval} seconds...")
+            time.sleep(retry_interval)
 
 def comunication_harvester_synthesis(project_list, sleep_interval=15,
                                      synthesis_url="http://localhost:8000/comunication_harverster_synthesis/"):
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
         # TODO: Adicionar um for project in project_list:
+        # print("project_list:", project_list.get('1')['name'])
+        
+            
         response = requests.get(synthesis_url)
         json_data = response.json()
 
@@ -32,7 +38,7 @@ def comunication_harvester_synthesis(project_list, sleep_interval=15,
         # Consulta (Coletor) busca por dados novos na base externa e os recebe caso existam.
         harvested_data = {}
         for projeto_data in json_data.values():
-            data_response = requests.get(projeto_data['link_dados_rto'])
+            data_response = requests.get(projeto_data['link'])
             harvested_data[projeto_data['id']] = data_response.json()
 
         headers = {'Content-Type': 'application/json'}  # Adicione quaisquer outros headers necessários

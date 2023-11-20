@@ -23,4 +23,5 @@ urlpatterns = [
     path("harvester_init/", views.harvester_init, name="harvester_init"),
     path("comunication_harverster_synthesis/", views.comunication_harverster_synthesis,
          name="comunication_harverster_synthesis"),
+    path("purge_old_data/", views.purge_old_data, name="purge_old_data")
 ]
