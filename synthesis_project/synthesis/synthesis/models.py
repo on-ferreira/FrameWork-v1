@@ -1,5 +1,5 @@
 from django.db import models
-from sympy import true
+
 
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
@@ -10,13 +10,34 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
-    
-class ProjectData(models.Model):
-    id = models.AutoField(primary_key=True)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    data = models.CharField(max_length=4095)
-    timestamp = models.FloatField()
 
+
+class Tags(models.Model):
+    """
+        Armazenar todos os tipos de tag que existem no projeto
+        Exemplo:
+                id 1 - name: BLUE_GAL
+                id 2 - name: YELLOW_GAL
+    """
+    tag_id = models.AutoField(primary_key=True)
+    tag_name = models.CharField(max_length=255)
 
     def __str__(self):
-        return f"ProjectData {self.id} - Project {self.project.id} - Timestamp: {self.timestamp}"
+        return self.tag_name
+
+
+class ProjectTag(models.Model):
+    """
+        Relação que irá salvar os valores e a timestamp de tags e projetos.
+        Exemplo:
+            Projeto_id 1 - tag_id 1 - value 10 - timestamp 21/11/2023 18:55
+            Projeto_id 1 - tag_id 1 - value 0  - timestamp 21/11/2023 18:55
+    """
+    projeto = models.ForeignKey(Project, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tags, on_delete=models.CASCADE)
+    value = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"projeto_id: {self.projeto.id} - tag_name {self.tag.tag_name} - value {self.value} " \
+               f"- timestamp {self.timestamp}"
