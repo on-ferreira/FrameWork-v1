@@ -4,7 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Max
 
 from .models import Project
-from .models import ProjectData
+from .models import ProjectTag
+
+from .project_dao import get_all_projects
 
 import json
 import concurrent.futures
@@ -12,17 +14,8 @@ import time
 
 @require_http_methods(["GET"])
 def harvester_init(request):
-    if (not Project.objects.filter(id=1).exists()):
-        p1 = Project(name="Project 1", poco="Poco 1", um="UM 1", link="https://api.chucknorris.io/jokes/random")
-        p2 = Project(name="Project 2", poco="Poco 2", um="UM 2", link="https://api.chucknorris.io/jokes/random")
-        # Other API Links
-        # p3 = Project(name="Project 3", poco="Poco 3", um="UM 3", link="https://uselessfacts.jsph.pl/api/v2/facts/random")
-        # p4 = Project(name="Project 4", poco="Poco 4", um="UM 4", link="https://corporatebs-generator.sameerkumar.website/")
 
-        p1.save()
-        p2.save()
-    
-    projects = Project.objects.all()
+    projects = get_all_projects()
     project_dict = {project.id: {
         'name': project.name,
         'poco': project.poco,
@@ -43,9 +36,9 @@ def comunication_harverster_synthesis(request):
 
         for project in Project.objects.all():
             try:
-                latest_row = ProjectData.objects.filter(project_id=project.id).aggregate(Max('timestamp'))
+                latest_row = ProjectTag.objects.filter(project_id=project.id).aggregate(Max('timestamp'))
                 latest_time = latest_row['timestamp__max']
-            except ProjectData.DoesNotExist:
+            except ProjectTag.DoesNotExist:
                 latest_time = None
             update_list[project.id] = {
                 "id": project.id,
@@ -60,7 +53,7 @@ def comunication_harverster_synthesis(request):
 
         # Salva os dados no banco de dados
         for (key, inner_data) in data.items():
-            temp = ProjectData(project_id=key, data=inner_data['value'], timestamp=time.time())
+            temp = ProjectTag(project_id=key, data=inner_data['value'], timestamp=time.time())
             temp.save()
             # print(f"Project ID: {key}, value: {inner_data['value']}")
 
@@ -70,11 +63,11 @@ def comunication_harverster_synthesis(request):
 # 1200 seconds = 20 minutes
 def purge_old_data_for_project(project, keep_data_interval=1200):
     try:
-        latest_row = ProjectData.objects.filter(project_id=project.id).aggregate(Max('timestamp'))
+        latest_row = ProjectTag.objects.filter(project_id=project.id).aggregate(Max('timestamp'))
         latest_time = latest_row['timestamp__max']
-    except ProjectData.DoesNotExist:
+    except ProjectTag.DoesNotExist:
         latest_time = None
-    for row in ProjectData.objects.all():
+    for row in ProjectTag.objects.all():
         if latest_time and (row.timestamp < latest_time - keep_data_interval):
             if (row.project_id == project.id):
                 row.delete()

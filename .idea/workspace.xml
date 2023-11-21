@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="Creating use case &quot;Comunicação Consulta Síntese&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/FrameWork.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FrameWork.iml" afterDir="false" />
+    <list default="true" id="61dc0d2d-b81c-4541-9867-76144b84b4c4" name="Changes" comment="Changing the use of bd to a in memory-list">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/harvester_project/harvester/harvester/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/synthesis_project/synthesis/synthesis/wsgi.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +65,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/orlan/OneDrive/Documentos/UFF/bopsistemas",
+    "last_opened_file_path": "C:/Users/orlan/OneDrive/Documentos/UFF/FrameWork",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -116,7 +116,8 @@
       <workItem from="1699650362248" duration="1477000" />
       <workItem from="1699726179871" duration="10525000" />
       <workItem from="1699736954622" duration="106000" />
-      <workItem from="1699903386799" duration="739000" />
+      <workItem from="1699903386799" duration="958000" />
+      <workItem from="1700601424757" duration="2999000" />
     </task>
     <task id="LOCAL-00001" summary="Creating use case &quot;Coletar Projetos no Síntese&quot;">
       <option name="closed" value="true" />
@@ -134,7 +135,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699736972888</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changing the use of bd to a in memory-list">
+      <option name="closed" value="true" />
+      <created>1699904730077</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699904730077</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -143,14 +152,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creating use case &quot;Coletar Projetos no Síntese&quot;" />
     <MESSAGE value="Creating use case &quot;Comunicação Consulta Síntese&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating use case &quot;Comunicação Consulta Síntese&quot;" />
+    <MESSAGE value="Changing the use of bd to a in memory-list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing the use of bd to a in memory-list" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/harvester_project/harvester/harvester/settings.py</url>
-          <line>70</line>
+          <line>69</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
