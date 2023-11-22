@@ -41,12 +41,11 @@ def delete_project_tag_values_older_than(timestamp):
     ProjectTag.objects.filter(timestamp__lt=timestamp).delete()
 
 
-def get_all_tag_ids():
+def get_all_tags():
     """
-    Retorna uma lista com os IDs de todas as tags.
+    Retorna uma lista com todas as tags.
     """
-    tag_ids = Tags.objects.values_list('tag_id', flat=True)
-    return list(tag_ids)
+    return Tags.objects.all()
 
 
 def get_all_projects():
@@ -54,3 +53,19 @@ def get_all_projects():
     Retorna todos os projetos.
     """
     return Project.objects.all()
+
+
+def get_project_by_id(projeto_id):
+    """
+    Retorna um projeto pelo id.
+    """
+    return Project.objects.get(id=projeto_id)
+
+
+def get_tag_by_id(tag_id):
+    """
+        Retorna uma tag pelo id.
+        """
+    return Tags.objects.get(tag_id=tag_id)
+
+

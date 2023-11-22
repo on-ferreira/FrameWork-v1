@@ -1,9 +1,8 @@
 import requests
 import time
-from django.db import connection
 
 
-def harvester_init(retry_interval=5, synthesis_url="http://localhost:5500/harvester_init"):
+def harvester_init(retry_interval=5, synthesis_url="http://localhost:5500/get_active_projects"):
     retries = 0
     while True:
         try:
@@ -11,7 +10,7 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:5500/harves
             response.raise_for_status()  # Levanta uma exceção para códigos de erro HTTP
             json_data = response.json()
 
-            print("Projects retrived:", json_data)
+            print("Projects retrieved:", json_data)
             return json_data  # Sai do loop se a solicitação for bem-sucedida
         except requests.exceptions.RequestException as e:
             print(f"Error to stablish connection with synthesys: {e}")
@@ -22,24 +21,35 @@ def harvester_init(retry_interval=5, synthesis_url="http://localhost:5500/harves
             print(f"Trying again in {retry_interval} seconds...")
             time.sleep(retry_interval)
 
+
 def comunication_harvester_synthesis(project_list, sleep_interval=15,
                                      synthesis_url="http://localhost:5500/comunication_harverster_synthesis/"):
+    tags_urls = {"1": "https://api.chucknorris.io/jokes/random", "2": "https://meowfacts.herokuapp.com/",
+                 "3": "https://opentdb.com/api.php?amount=1"}
     while True:
         # Consulta (Coletor) solicita as informações dos últimos dados recebidos ao Síntese. GET
-        # TODO: Adicionar um for project in project_list:
-        # print("project_list:", project_list.get('1')['name'])
-        
-            
+
         response = requests.get(synthesis_url)
         json_data = response.json()
-
-        # TODO: Fazer a lógica de como receber os últimos dados, para buscar por eles.
+        print(f"json_data {json_data}")
+        """
+        Formato dos dados que irão chegar:
+        json_data = {1: { "tags" : { 1 { tag_lastime: timestamp1}, 
+                                     2 { tag_lasttime: timestamp2} }
+                          "link" : project.link}
+        """
 
         # Consulta (Coletor) busca por dados novos na base externa e os recebe caso existam.
         harvested_data = {}
-        for projeto_data in json_data.values():
-            data_response = requests.get(projeto_data['link'])
-            harvested_data[projeto_data['id']] = data_response.json()
+        for projeto in json_data:
+            # data_response = requests.get(projeto['link'])
+            data_response = {}
+            for tag in json_data[projeto]["tags"]:
+                # Essa parte do código está sendo feita dessa forma pra emular mais rapidamente
+                # o funcionamento da comunicação
+                tag_response = requests.get(tags_urls[tag]).json()
+                data_response[tag] = tag_response
+            harvested_data[projeto] = data_response
 
         headers = {'Content-Type': 'application/json'}  # Adicione quaisquer outros headers necessários
 
