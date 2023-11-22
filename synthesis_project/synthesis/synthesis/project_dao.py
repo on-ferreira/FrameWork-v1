@@ -8,10 +8,8 @@ def get_recent_value_for_project_and_tag(project_id, tag_id):
     """
     resultado = ProjectTag.objects.filter(projeto__id=project_id, tag__tag_id=tag_id).order_by('-timestamp').first()
 
-    if resultado:
-        return resultado.value
-    else:
-        return None
+    return resultado
+
 
 
 def get_oldest_value_for_project_and_tag(project_id, tag_id):
@@ -20,18 +18,15 @@ def get_oldest_value_for_project_and_tag(project_id, tag_id):
     """
     resultado = ProjectTag.objects.filter(projeto__id=project_id, tag__tag_id=tag_id).order_by('timestamp').first()
 
-    if resultado:
-        return resultado.value
-    else:
-        return None
+    return resultado
 
 
 def get_project_tag_values_older_than(timestamp):
     """
     Retorna todos os valores da tabela ProjectTag com timestamp mais antiga que a timestamp especificada.
     """
-    valores = ProjectTag.objects.filter(timestamp__lt=timestamp).values_list('value', flat=True)
-    return list(valores)
+    values = ProjectTag.objects.filter(timestamp__lt=timestamp).values_list('value', flat=True)
+    return values
 
 
 def delete_project_tag_values_older_than(timestamp):
