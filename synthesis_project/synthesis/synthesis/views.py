@@ -8,6 +8,7 @@ from .models import ProjectTag
 
 from .project_dao import get_all_projects
 from .project_dao import get_oldest_value_for_project_and_tag
+from .project_dao import get_recent_value_for_project_and_tag
 from .project_dao import get_all_tags
 from .project_dao import get_project_by_id
 from .project_dao import get_tag_by_id
@@ -17,6 +18,7 @@ import concurrent.futures
 import time
 from datetime import datetime
 from datetime import timedelta
+from datetime import timezone
 
 
 @require_http_methods(["GET"])
@@ -44,13 +46,13 @@ def comunication_harverster_synthesis(request):
         for project in projects:
             project_update = {}
             for tag in tags:
-                latest_row = get_oldest_value_for_project_and_tag(project.id, tag.tag_id)
-                latest_time = latest_row
+                latest_row = get_recent_value_for_project_and_tag(project.id, tag.tag_id)
+                latest_time = latest_row.timestamp if latest_row else None
 
-                # if latest_row is None or latest_row < (datetime.now() - timedelta(seconds=10)):
-                project_update[tag.tag_id] = {
-                    "tag_lastime": latest_time
-                }
+                if latest_time is None or latest_time < (datetime.now(timezone.utc) - timedelta(seconds=30)):
+                    project_update[tag.tag_id] = {
+                        "tag_lastime": latest_time
+                    }
 
             update_list[project.id] = {
                 "tags": project_update,
